@@ -15,9 +15,12 @@ const PORT = process.env.PORT || 5001;
 
 const __dirname = path.resolve();
 
+// Allow frontend origin from environment (set FRONTEND_URL on Render). Fallback to localhost for local dev.
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     credentials: true, // allow frontend to send cookies
   })
 );
