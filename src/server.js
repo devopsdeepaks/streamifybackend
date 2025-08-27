@@ -34,13 +34,13 @@ app.use("/api/chat", chatRoutes);
 // simple health endpoint for Render / uptime checks
 app.get("/health", (req, res) => res.status(200).send("OK"));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-  });
-}
+// Note: Frontend is deployed separately, so we don't serve static files here
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+//   });
+// }
 
 // connect to DB first, then start server
 (async () => {
